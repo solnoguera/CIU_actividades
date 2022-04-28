@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" class="w-100 h-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CIU</title>
+    <style>
+      .color {
+        background-color: rgb(190, 59, 7);
+      }
+    </style>
+  </head>
+  <body id="body">
+      <h1>CORRETE DEL CARRILLLL</h1>
+    <button type="button" id="beep">BEEP</button>
+
+    <script>
+      const button = document.getElementById("beep");
+      const body = document.getElementById("body");
+      const callback = () => {
+        body.insertAdjacentHTML("beforeend", `<h2>BEEP!</h2>`);
+        body.classList.toggle("color");
+      };
+      button.addEventListener("click", callback);
+    </script>
+  </body>
+</html>

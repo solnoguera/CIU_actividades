@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIU</title>
+</head>
+<body id="body">
+    <h3>Elegi el color de fondo (En ingles sino no te entiendo)</h3>
+    <input type="text" name="" id="input" placeholder="Background">
+    <button id="boton">buscar</button>
+
+    <script>
+        const boton = document.getElementById("boton");
+        const body = document.getElementById("body")
+        boton.addEventListener("click", () => {
+            var value = document.getElementById('input').value;
+            console.log(value)   
+            if(value == "") value = "white"
+            body.style.backgroundColor = value     
+        });
+
+    </script>
+</body>
+</html>

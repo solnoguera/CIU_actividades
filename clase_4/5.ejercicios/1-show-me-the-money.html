@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIU</title>
+    <style>
+        .oculto{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button id="money">Show Me Money</button>
+        <button id="miami">Show Me Miami</button>
+        <button id="maeame">Show Me MAEAMEEEE</button>
+        <br/>
+        <br/>
+        <img src="https://ca-times.brightspotcdn.com/dims4/default/05b5769/2147483647/strip/true/crop/6500x4565+0+0/resize/1486x1044!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F69%2F42%2Fa9b2b3db43e58426f0002322f65c%2Fla-tr-travel-flyguy-20191222-04.jpg" alt="" width="400px" height="300px" class="oculto" id="img-money">
+        <img src="https://www.cronista.com/files/image/401/401115/618bd34cdeec4.jpg" alt="" width="400px" height="300px" class="oculto" id="img-miami">
+        <img src="https://media.ambito.com/p/fa02077a75256f92036786bea42ad093/adjuntos/239/imagenes/039/765/0039765942/ricardo-fortjpg.jpg" alt="" width="500px" height="300px" class="oculto" id="img-maeame">
+    </div>
+
+    <script>
+        const boton1 = document.getElementById("money")
+        const boton2 = document.getElementById("miami")
+        const boton3 = document.getElementById("maeame")
+        const imagen1 = document.getElementById("img-money")
+        const imagen2 = document.getElementById("img-miami")
+        const imagen3 = document.getElementById("img-maeame")
+
+        boton1.addEventListener("click", ()=>{
+            imagen1.classList.toggle("oculto")
+        })
+        boton2.addEventListener("click", ()=>{
+            imagen2.classList.toggle("oculto")
+        })
+        boton3.addEventListener("click", ()=>{
+            imagen3.classList.toggle("oculto")
+        })
+
+        const imagenes = [imagen1, imagen2, imagen3]
+        imagenes.forEach((element) => {
+            element.addEventListener("click", () => {
+            element.classList.toggle("oculto");
+            });
+        });
+    </script>
+</body>
+</html>

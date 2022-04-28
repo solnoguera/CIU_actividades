@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" class="w-100 h-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CIU</title>
+    <style>
+      .color {
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body id="body">
+
+    <!--Ejercicio Manipulando CSS-->
+    <h4>Manipulando CSS</h4>
+    <button type="button" id="mi-boton">Clickeame</button>
+
+    <script>
+      const button = document.getElementById("mi-boton");
+      const body = document.getElementById("body");
+      const callback = () => {
+        body.insertAdjacentHTML("beforeend", `<p>ROSA!</p>`);
+        body.classList.toggle("color");
+      };
+      button.addEventListener("click", callback);
+    </script>
+
+    <!--Ejercicio Manipulando texto-->
+    <h4>Manipulando Texto</h4>
+    <div>
+        <p id="saludo">Holis, haceme click</p>
+    </div>
+    <script>
+        const p = document.getElementById("saludo")
+        console.log(p.innerText)
+        const callback2 = () =>{
+            p.innerHTML = "Adios :)"
+        }
+        p.addEventListener("click", callback2)
+        
+    </script>
+    
+    <!--Ejercicio Suffle-->
+    <h4>Suffle!</h4>
+    <div id="source">Origen</div>
+    <div id="destination">Destino</div>
+    <button id="boton">Shuffle</button>
+
+    <script>
+        const source = document.getElementById("source")
+        const destination =  document.getElementById("destination")
+        const boton = document.getElementById("boton")
+        
+        const callback3 = () =>{
+            const sourceContent = source.innerHTML
+            const destinationContent = destination.innerHTML
+            source.innerHTML = destinationContent
+            destination.innerHTML = sourceContent
+        }
+        boton.addEventListener("click", callback3)
+
+    </script>
+
+  </body>
+</html>
