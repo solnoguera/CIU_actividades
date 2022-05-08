@@ -1,0 +1,57 @@
+CLOSURES
+
+1. ¿En qué parte del código se genera un closure? ¿Por qué?
+
+    Se genera un closure en la siguiente parte del código:
+    function cambiarDimensionFuente(size=8) {
+        return function() { 
+            document.body.style.fontSize = size + 'px';
+        };
+    }
+    var size8 = cambiarDimensionFuente(8);
+    var size16 = cambiarDimensionFuente(16);
+    var size24 = cambiarDimensionFuente(24);
+
+    Podemos observar que hay una funcion que devuelve otra función (la cual tiene acceso al parámetro de entrada de la función externa). En esencia, cambiarDimensionFuente es una fábrica de función: crea funciones que pueden cambiar el font size a un valor específic. En el ejemplo anterior utilizamos nuestra fábrica de función para crear 3 nuevas funciones: una que agrega 8 a su argumento y otra que agrega 16 y otra que agrega 24.
+
+    size8, size16 y size24 son closures. Comparten la misma definición de cuerpo de función, pero almacenan diferentes entornos.
+
+
+2. ¿En qué parte del código se establece que al hacer click sobre el elemento con id fuente-8 se cambie el tamaño de las fuentes de la página?
+
+    Dentro de la funcion setClicks(), en la línea 12 se establece que al hacer click sobre el elemento con id fuente-8 se cambia el tamaño de las fuentes de la pagina ya que indirectamente llama a la funcion cambiarDimensionFuente con el valor 8.
+
+    document.getElementById('fuente-8').onclick = size8;
+
+
+3. Supone que eliminamos la función setClicks y dejamos su código “libre” dentro de las etiquetas <script> … </script>. ¿Qué mensaje de error te muestra la consola de depuración? (Activa la consola si no la tienes activada) ¿Por qué aparece ese mensaje de error?
+
+    El error de la consola es el siguiente:
+    <a class='gotoLine' href='#48:32'>48:32</a> Uncaught ReferenceError: setClicks is not defined"
+
+    Aparece este error ya que en la etiqueta body estamos llamando a setClicks() y si dejamos el codigo suelto no va a encontrar la declaración de la función, sin embargo sigue funcionando el código al guardar las funciones en los onClick de cada elemento, sin ejecutarlos hasta que se haga click.
+
+
+4. ¿Debemos escribir document.getElementById('fuente-8').onclick = size8; ó document.getElementById('fuente-8').onclick = size8(); ?¿Por qué?
+    Debemos escribir size8 ya que a onClick le tenemos que pasar una REFERENCIA de una función, no una función con paréntesis ya que lo que haría sería ejecutar la función a pesar de que no hayamos clickeado. 
+
+5. Supón que al cargar la página queremos que el tamaño inicial de fuente sea 8 y para ello nos valemos de la función setClicks. ¿Debemos escribir dentro de esta función size8; ó size8();? ¿Por qué?
+    Para determinar como valor inicial del tamaño de la fuente a 8px, debemos escribir dentro de setClicks la función size8() para que llame a la función de cambiarDimensionFuente con el parámetro 8. Si escribieramos solo size8 estariamos haciendo simplemente una referencia a esa función, no la estaríamos ejecutando en ningún momento.
+
+6. Las closures no siempre son necesarias, incluso a veces se generan involuntariamente o innecesariamente consumiendo recursos del sistema que podrían ahorrarse. ¿Qué ventajas le ves al uso de closures en este código? ¿Y qué inconvenientes?
+    La ventaja de este uso es que si no tuvieramos los closures, cuando le asignemos a onClick el llamado a la función, tendríamos que poner paréntesis para poder pasarle los parámetros, lo que haria que se este ejecutando la funcion. Los closures son una manera limpia de guardar referencia de una función con parámetros establecidos.
+    La desventaja sería que son más lineas de código, y que quizas no todos entiendan lo que es un closure y qué está ocurriendo.
+
+7. Reescribí el código (hacelo como mejor creas cambiando todo aquello que consideres necesario) de forma que obtengas el mismo resultado pero sin hacer uso de closures.
+
+    La forma que yo escribiría el código sin usar clousures sería con arrow functions:
+
+    function cambiarDimensionFuente(size) {
+        document.body.style.fontSize = size + 'px';
+    }
+
+    function setClicks(){
+        document.getElementById('fuente-8').onclick = ()=>cambiarDimensionFuente(8);
+        document.getElementById('fuente-16').onclick = ()=>cambiarDimensionFuente(16);
+        document.getElementById('fuente-24').onclick = ()=>cambiarDimensionFuente(24);
+    }
